@@ -1,0 +1,7 @@
+PostgreSQL:
+  restart: always
+  image: postgres
+  environment:
+    POSTGRES_PASSWORD: admin
+  ports:
+    - "5432:5432"
