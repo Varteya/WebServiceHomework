@@ -14,8 +14,9 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Path("/user")
 public class UserRestController {
     @POST
-    public void createUser (UserDTO user){
+    public String createUser (UserDTO user){
         System.out.println(user.toString());
+        return "User created successfully";
     }
 
     @GET
