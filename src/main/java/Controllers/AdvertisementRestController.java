@@ -2,6 +2,7 @@ package Controllers;
 
 
 import DTO.AdvertisementDTO;
+import Exceptions.EntityDoesNotExistsException;
 import Services.AdvertisementServices;
 
 import javax.ejb.EJB;
@@ -20,9 +21,13 @@ public class AdvertisementRestController {
     private AdvertisementServices advertisementServices;
 
     @POST
-    public String createAdvertisement (AdvertisementDTO advertisement) {
-        advertisement.setDate(LocalDate.now());
-        AdvertisementDTO createdAdvertisement = advertisementServices.createAdvertisement(advertisement);
-        return "Advertisement " + createdAdvertisement.toString() + " created successfully!";
+    public String createAdvertisement(AdvertisementDTO advertisement) {
+        try {
+            advertisement.setDate(LocalDate.now());
+            AdvertisementDTO createdAdvertisement = advertisementServices.createAdvertisement(advertisement);
+            return "Advertisement " + createdAdvertisement.toString() + " created successfully!";
+        } catch (EntityDoesNotExistsException e) {
+            return e.getMessage();
+        }
     }
 }

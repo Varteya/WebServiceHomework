@@ -1,6 +1,7 @@
 package Services;
 
 import DTO.AdvertisementDTO;
+import Exceptions.EntityDoesNotExistsException;
 import Repository.AdvertisementRepository;
 
 import javax.ejb.ConcurrencyManagement;
@@ -18,7 +19,7 @@ public class AdvertisementServices {
     private AdvertisementRepository advertisementRepository;
 
 
-    public AdvertisementDTO createAdvertisement (AdvertisementDTO advertisement) {
+    public AdvertisementDTO createAdvertisement (AdvertisementDTO advertisement) throws EntityDoesNotExistsException {
         int newID = advertisementRepository.createAdvertisement(advertisement);
         advertisement.setId(newID);
         return advertisement;
