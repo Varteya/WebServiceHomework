@@ -9,7 +9,7 @@ CREATE TABLE users
 );
 
 CREATE TABLE advertisement (
-    id      integer PRIMARY KEY,
+    id      SERIAL PRIMARY KEY,
     header  VARCHAR(255),
     body    TEXT,
     category VARCHAR(255),
