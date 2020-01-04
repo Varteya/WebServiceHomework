@@ -1,6 +1,6 @@
 PostgreSQL:
   restart: always
-  image: postgres
+  image: postgres:latest
   environment:
     POSTGRES_PASSWORD: admin
   ports:
