@@ -6,9 +6,9 @@ import Exceptions.EntityDoesNotExistsException;
 import Services.AdvertisementServices;
 
 import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Response;
 
 import java.time.LocalDate;
 
@@ -21,13 +21,33 @@ public class AdvertisementRestController {
     private AdvertisementServices advertisementServices;
 
     @POST
-    public String createAdvertisement(AdvertisementDTO advertisement) {
+    public AdvertisementDTO createAdvertisement (AdvertisementDTO advertisement) {
         try {
             advertisement.setDate(LocalDate.now());
             AdvertisementDTO createdAdvertisement = advertisementServices.createAdvertisement(advertisement);
-            return "Advertisement " + createdAdvertisement.toString() + " created successfully!";
+            return createdAdvertisement;
         } catch (EntityDoesNotExistsException e) {
-            return e.getMessage();
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+    }
+
+    @DELETE
+    public Response.Status deleteAdvertisement (int advertisementID) {
+        try {
+            advertisementServices.deleteAdvertisement(advertisementID);
+            return Response.Status.NO_CONTENT;
+        } catch (EntityDoesNotExistsException e) {
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+    }
+
+    @GET
+    @Path("{id}")
+    public AdvertisementDTO findAdvertisement (@PathParam("id") int id){
+        try {
+            return advertisementServices.findAdvertisement(id);
+        } catch (EntityDoesNotExistsException e){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
 }

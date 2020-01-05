@@ -24,4 +24,12 @@ public class AdvertisementServices {
         advertisement.setId(newID);
         return advertisement;
     }
+
+    public void deleteAdvertisement (int advertisementID) throws EntityDoesNotExistsException {
+        advertisementRepository.deleteAdvertisement(advertisementID);
+    }
+
+    public AdvertisementDTO findAdvertisement (int advertisementID) throws EntityDoesNotExistsException {
+        return advertisementRepository.findAdvertisement(advertisementID);
+    }
 }

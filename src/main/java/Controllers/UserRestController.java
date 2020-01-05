@@ -1,15 +1,15 @@
 package Controllers;
 
+import DTO.AdvertisementDTO;
 import DTO.UserDTO;
 import Repository.UserRepository;
 import Services.UserServices;
 
 
 import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+
+import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -17,13 +17,13 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Path("/user")
 public class UserRestController {
     @EJB
-    private UserServices userServices;
+    private UserServices userServices = new UserServices();
 
     @POST
-    public String createUser (UserDTO user){
+    public UserDTO createUser (UserDTO user){
         UserDTO createdUser = userServices.createUser(user);
         System.out.println(createdUser.toString());
-        return "User " + createdUser.toString() + " created successfully";
+        return createdUser;
     }
 
     @GET
@@ -31,4 +31,10 @@ public class UserRestController {
         System.out.println("sdlfsdlfo");
         return "Hello world";
     }
+
+//    @GET
+//    @Path("/{id}/adverts")
+//    public List<AdvertisementDTO> getAdvertisements (@PathParam("id") int id) {
+//
+//    }
 }

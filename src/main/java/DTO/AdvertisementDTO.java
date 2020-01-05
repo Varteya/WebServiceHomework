@@ -79,4 +79,16 @@ public class AdvertisementDTO {
                 ", authorID=" + authorID +
                 '}';
     }
+    public AdvertisementDTO () {}
+
+    public AdvertisementDTO (int id, String header, String body, String category,
+                             String phoneNumber, LocalDate date, int authorID) {
+        this.id = id;
+        this.header = header;
+        this.body = body;
+        this.category = category;
+        this.phoneNumber = phoneNumber;
+        this.date = date;
+        this.authorID = authorID;
+    }
 }

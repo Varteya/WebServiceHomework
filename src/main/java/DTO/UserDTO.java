@@ -57,4 +57,5 @@ public class UserDTO {
                 ", isCompany=" + isCompany +
                 '}';
     }
+
 }
