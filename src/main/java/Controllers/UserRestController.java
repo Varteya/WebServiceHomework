@@ -32,9 +32,9 @@ public class UserRestController {
         return "Hello world";
     }
 
-//    @GET
-//    @Path("/{id}/adverts")
-//    public List<AdvertisementDTO> getAdvertisements (@PathParam("id") int id) {
-//
-//    }
+    @GET
+    @Path("/{id}/adverts")
+    public List<AdvertisementDTO> findUsersAdvertisements (@PathParam("id") int id) {
+        return userServices.findUsersAdvertisements(id);
+    }
 }
