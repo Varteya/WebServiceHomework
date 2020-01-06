@@ -1,7 +1,6 @@
 package Repository;
 
 import DTO.AdvertisementDTO;
-import DTO.UserDTO;
 import Exceptions.EntityDoesNotExistsException;
 
 import javax.annotation.Resource;
